@@ -19,7 +19,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">部门名称</label>
             <div class="layui-input-block">
-                <input type="text" name="deptname" required  lay-verify="required" autocomplete="off" class="layui-input">
+                <input type="text" name="deptname" required style="width: 240px;" lay-verify="required" autocomplete="off" class="layui-input">
                 <input type="text" name="id" hidden>
             </div>
         </div>

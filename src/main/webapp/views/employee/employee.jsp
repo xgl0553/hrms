@@ -16,8 +16,8 @@
         <div class="grid-demo layui-col-md2">
             <div class="layui-form-item">
                 <label class="layui-form-label">员工姓名</label>
-                <div class="layui-input-block">
-                    <input type="text" name="emName" autocomplete="off" placeholder="请输入姓名" class="layui-input">
+                <div class="layui-input-block" >
+                    <input type="text" name="emName"  style="width: 120px;" autocomplete="off" placeholder="请输入姓名" class="layui-input">
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">工号</label>
                 <div class="layui-input-block">
-                    <input type="text" name="emnum" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <input type="text" name="emnum" style="width: 120px;" placeholder="请输入工号" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">电话</label>
                 <div class="layui-input-block">
-                    <input type="text" name="phone" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <input type="text" name="phone" style="width: 120px;" placeholder="请输入电话" autocomplete="off" class="layui-input" width="90px">
                 </div>
             </div>
         </div>

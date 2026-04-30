@@ -15,7 +15,7 @@
         <div class="layui-col-md10">
             <div class="grid-demo layui-col-md3">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">查询员工</label>
+                    <label class="layui-form-label">部门</label>
                     <div class="layui-input-block">
                         <select name="dept" lay-filter="dept" id="searchDept" class="dept">
                             <option value="">选择部门</option>
@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <div class="grid-demo layui-col-md2">
+            <div class="grid-demo layui-col-md3">
                 <div class="layui-form-item">
                     <label class="layui-form-label">选择员工</label>
                     <div class="layui-input-block">
@@ -33,7 +33,7 @@
                     </div>
                 </div>
             </div>
-            <div  class="grid-demo layui-col-md2">
+            <div  class="grid-demo layui-col-md3">
                 <div class="layui-form-item">
                     <label class="layui-form-label">工资月份</label>
                     <div class="layui-input-block">
