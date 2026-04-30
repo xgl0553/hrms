@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qingjian.hrms.mapper.DepartmentMapper">
+    <resultMap id="BaseResultMap" type="com.qingjian.hrms.entity.Department">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="deptname" jdbcType="VARCHAR" property="deptname" />
+    </resultMap>
+
+    <resultMap id="VOResultMap" type="com.qingjian.hrms.vo.DepartmentVO">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="deptname" jdbcType="VARCHAR" property="deptname" />
+<!--        <association property="chargeman" javaType="com.qingjian.hrms.entity.Employee">-->
+<!--            <result column="e_id" property="id" jdbcType="INTEGER"></result>-->
+<!--            <result column="e_emname" property="emName" jdbcType="VARCHAR"></result>-->
+<!--        </association>-->
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+       	deptname
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from department
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="list" parameterType="com.qingjian.hrms.vo.DepartmentVO" resultMap="VOResultMap">
+        select id,deptname
+        from department
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from department
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.qingjian.hrms.entity.Department">
+        insert into department (
+            deptname
+        )
+        values (
+                   #{deptname,jdbcType=VARCHAR}
+               )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.qingjian.hrms.entity.Department">
+        insert into department
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="deptname != null">
+                deptname,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="deptname != null">
+                #{deptname,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.qingjian.hrms.entity.Department">
+        update department
+        <set>
+            <if test="deptname != null">
+                deptname = #{deptname,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.qingjian.hrms.entity.Department">
+        update department
+        set
+            deptname = #{deptname,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+</mapper>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qingjian.hrms.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.qingjian.hrms.entity.User">
+        <result column="id" jdbcType="INTEGER" property="id" />
+        <result column="username" jdbcType="VARCHAR" property="username" />
+        <result column="realname" jdbcType="VARCHAR" property="realname" />
+        <result column="last_logine_time" jdbcType="TIMESTAMP" property="lastLogineTime" />
+        <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+        <result column="paword" jdbcType="VARCHAR" property="paword" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+        username,
+        realname,
+        last_logine_time,
+        createtime,
+        paword
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from user
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.qingjian.hrms.entity.User" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into user (
+        username,
+        realname,
+        last_logine_time,
+        createtime,
+        paword
+        )
+        values (
+        #{username,jdbcType=VARCHAR},
+        #{realname,jdbcType=VARCHAR},
+        #{lastLogineTime,jdbcType=TIMESTAMP},
+        #{createtime,jdbcType=TIMESTAMP},
+        #{paword,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.qingjian.hrms.entity.User">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            <if test="id != null">
+                id,
+            </if>
+
+            <if test="username != null">
+                username,
+            </if>
+
+            <if test="realname != null">
+                realname,
+            </if>
+
+            <if test="lastLogineTime != null">
+                last_logine_time,
+            </if>
+
+            <if test="createtime != null">
+                createtime,
+            </if>
+
+            <if test="paword != null">
+                paword,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="realname != null">
+                #{realname,jdbcType=VARCHAR},
+            </if>
+            <if test="lastLogineTime != null">
+                #{lastLogineTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="paword != null">
+                #{paword,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.qingjian.hrms.entity.User">
+        update user
+        <set>
+
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+
+            <if test="realname != null">
+                realname = #{realname,jdbcType=VARCHAR},
+            </if>
+
+            <if test="lastLogineTime != null">
+                last_logine_time = #{lastLogineTime,jdbcType=TIMESTAMP},
+            </if>
+
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+
+            <if test="paword != null">
+                paword = #{paword,jdbcType=VARCHAR},
+            </if>
+        </set>
+
+        where id = #{id,jdbcType=INTEGER}
+
+    </update>
+
+
+
+    <update id="updateByPrimaryKey" parameterType="com.qingjian.hrms.entity.User">
+        update user
+        set
+            username = #{username,jdbcType=VARCHAR},
+            realname = #{realname,jdbcType=VARCHAR},
+            last_logine_time = #{lastLogineTime,jdbcType=TIMESTAMP},
+            createtime = #{createtime,jdbcType=TIMESTAMP},
+            paword = #{paword,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="findByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select * from user where username = #{username,jdbcType=VARCHAR}
+    </select>
+    <select id="list" parameterType="com.qingjian.hrms.qo.UserQO" resultMap="BaseResultMap">
+        select * from user
+        where 1=1
+            <if test="username != null">
+                and username = #{username,jdbcType=VARCHAR}
+            </if>
+            <if test="realname != null">
+                and realname = #{realname,jdbcType=VARCHAR}
+            </if>
+    </select>
+</mapper>
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <jmxConfigurator/>
+    <springProperty name="logLevel" source="logging.level.root" defaultValue="INFO"></springProperty>
+    <springProperty name="appName" source="spring.application.name" defaultValue="hrms"></springProperty>
+    <springProperty name="maxHistory" source="logging.maxHistory" defaultValue="3" ></springProperty>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] %logger{36}-[%line]-[%level]-%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/logs/${appName}-service.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/logs/${appName}-service.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] %thread %logger{36}-[%line]-[%level]-%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root lever="${logLevel}">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>
